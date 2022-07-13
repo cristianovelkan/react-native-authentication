@@ -17,9 +17,8 @@ function SignupScreen() {
     } catch (err) {
       console.log(err);
       Alert.alert("Error", "Could not sign up. Please try again later.");
+      setIsAuthenticating(false);
     }
-
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {

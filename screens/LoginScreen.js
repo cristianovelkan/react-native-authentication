@@ -18,8 +18,8 @@ function LoginScreen() {
     } catch (err) {
       console.log(err);
       Alert.alert("Error", "Invalid email or password");
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {
