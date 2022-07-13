@@ -7,30 +7,23 @@ export async function authenticate(
   mode = "signInWithPassword"
 ) {
   try {
-    console.log(`${AUTH_URL}:${mode}?key=${AUTH_KEY}`);
     const response = await axios.post(`${AUTH_URL}:${mode}?key=${AUTH_KEY}`, {
       email: email,
       password: password,
       returnSecureToken: true,
     });
-    console.log(response.data);
+    const token = response.data.idToken;
+
+    return token;
   } catch (err) {
     console.log(err.response);
   }
 }
 
-export async function createUser(email, password) {
-  try {
-    await authenticate(email, password, "signUp");
-  } catch (err) {
-    console.log(err);
-  }
+export function createUser(email, password) {
+  return authenticate(email, password, "signUp");
 }
 
-export async function login(email, password) {
-  try {
-    await authenticate(email, password);
-  } catch (err) {
-    console.log(err);
-  }
+export function login(email, password) {
+  return authenticate(email, password);
 }
